@@ -142,19 +142,22 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
+            position: relative;
         }
 
         .yes {
             background: #ff2e93;
             color: white;
             animation: vibrate 2.2s infinite;
-            /* VERY slow start */
+            z-index: 2;
+            /* LOWER than running NO */
         }
 
         .no {
             background: #8b0000;
             color: white;
             transition: opacity 0.3s;
+            z-index: 3;
         }
     </style>
 </head>
@@ -283,7 +286,7 @@
             }
         }
 
-        /* NO RUNS AWAY */
+        /* NO RUNS AWAY — stays on top */
         function enableEscape() {
             escapeEnabled = true;
             const noBtn = document.getElementById("noBtn");
@@ -293,6 +296,7 @@
             const cr = box.getBoundingClientRect();
 
             noBtn.style.position = "absolute";
+            noBtn.style.zIndex = "5";   // 🔥 FIX
             noBtn.style.left = (br.left - cr.left) + "px";
             noBtn.style.top = (br.top - cr.top) + "px";
 
@@ -335,5 +339,3 @@
 </body>
 
 </html>
-
-
