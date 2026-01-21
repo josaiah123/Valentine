@@ -14,7 +14,7 @@
         body {
             margin: 0;
             min-height: 100vh;
-            background: #ffe4e1;
+            background: linear-gradient(#ffeaea, #ffe4e1);
             font-family: "Segoe Script", cursive;
             display: flex;
             align-items: center;
@@ -26,23 +26,35 @@
             background: #fff8f6;
             width: 100%;
             max-width: 520px;
-            padding: 32px;
-            border-radius: 24px;
+            padding: 34px;
+            border-radius: 26px;
             text-align: center;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .photo img {
             width: 100%;
-            height: auto;
-            border-radius: 16px;
+            border-radius: 18px;
             border: 3px solid #e6e6e6;
             margin-bottom: 20px;
         }
 
         .sticker img {
             width: 160px;
-            margin: 16px auto;
+            margin: 18px auto;
         }
 
         .text {
@@ -53,14 +65,14 @@
         .subtext {
             font-size: 18px;
             color: #7a0000;
-            margin-top: 12px;
+            margin-top: 14px;
             opacity: 0.9;
         }
 
         .question {
-            font-size: 28px;
+            font-size: 30px;
             color: #7a0000;
-            margin-top: 14px;
+            margin-top: 16px;
         }
 
         .message {
@@ -70,12 +82,15 @@
             min-height: 28px;
         }
 
+        /* BUTTON AREA */
         .buttons {
-            margin-top: 30px;
+            margin-top: 32px;
             display: flex;
             justify-content: center;
-            gap: 22px;
+            gap: 24px;
+            align-items: center;
             position: relative;
+            height: 70px;
         }
 
         button {
@@ -83,18 +98,20 @@
             font-size: 22px;
             padding: 12px 32px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
         }
 
         .yes {
             background: #ff2e93;
             color: white;
+            z-index: 3;
         }
 
         .no {
             background: #8b0000;
             color: white;
+            z-index: 2;
         }
     </style>
 </head>
@@ -111,9 +128,8 @@
         let page = 1;
         let musicStarted = false;
         let noCount = 0;
-        let escapeMode = false;
+        let escapeEnabled = false;
 
-        /* Stickers ONLY for NO reactions */
         const noStickers = [
             "sticker2.gif",
             "sticker3.gif",
@@ -122,10 +138,10 @@
         ];
 
         const noMessages = [
-            "Hey… that wasn’t very nice",
+            "Hey… that wasn’t very nice 😿",
             "Okay, that kinda hurt 💔",
-            "Wow… this is getting personal",
-            "NO option removed for emotional safety."
+            "Wow… this is getting personal 😭",
+            "NO option revoked for emotional safety."
         ];
 
         renderPage1();
@@ -134,65 +150,43 @@
 
         function renderPage1() {
             card.innerHTML = `
-        <div class="photo">
-            <img src="photo.jpg" alt="Us">
-        </div>
-        <div class="text">
-            Boohoo I have something important to tell you…
-        </div>
-        <div class="subtext">(tap anywhere)</div>
-    `;
+                <div class="photo"><img src="photo.jpg"></div>
+                <div class="text">I have something important to tell you…</div>
+                <div class="subtext">(tap anywhere)</div>
+            `;
         }
 
         function renderPage2() {
             card.innerHTML = `
-        <div class="sticker">
-            <img src="sticker1.gif">
-        </div>
-        <div class="text">
-            Before anything else…
-        </div>
-        <div class="subtext">
-            I want you to know that you truly mean a lot to me.
-        </div>
-        <div class="subtext">(tap anywhere)</div>
-    `;
+                <div class="sticker"><img src="sticker1.gif"></div>
+                <div class="text">Before anything else…</div>
+                <div class="subtext">You truly mean a lot to me.</div>
+                <div class="subtext">(tap anywhere)</div>
+            `;
         }
 
         function renderPage3() {
             card.innerHTML = `
-        <div class="sticker">
-            <img src="sticker1.gif">
-        </div>
-        <div class="text">
-            I’m really grateful for you.
-        </div>
-        <div class="subtext">
-            For your patience, your care, and the way you make
-            even ordinary days feel special.
-        </div>
-        <div class="subtext">(tap anywhere)</div>
-    `;
+                <div class="sticker"><img src="sticker1.gif"></div>
+                <div class="text">I’m really grateful for you.</div>
+                <div class="subtext">
+                    For your patience, your care,<br>
+                    and the way you make ordinary days feel special.
+                </div>
+                <div class="subtext">(tap anywhere)</div>
+            `;
         }
 
-        /* QUESTION PAGE — RENDERED ONCE ONLY */
         function renderPage4() {
             card.innerHTML = `
-        <div class="sticker">
-            <img id="stickerImg" src="sticker1.gif">
-        </div>
-
-        <div class="question" id="questionText">
-            Will you be my Valentine?
-        </div>
-
-        <div class="message" id="message"></div>
-
-        <div class="buttons" id="btnBox">
-            <button class="yes" onclick="yesClicked()">YES</button>
-            <button class="no" id="noBtn" onclick="noClicked()">NO</button>
-        </div>
-    `;
+                <div class="sticker"><img id="stickerImg" src="sticker1.gif"></div>
+                <div class="question">Will you be my Valentine?</div>
+                <div class="message" id="message"></div>
+                <div class="buttons" id="btnBox">
+                    <button class="yes" onclick="yesClicked()">YES</button>
+                    <button class="no" id="noBtn" onclick="noClicked()">NO</button>
+                </div>
+            `;
         }
 
         /* ---------- INTERACTION ---------- */
@@ -203,13 +197,9 @@
                 musicStarted = true;
             }
 
-            if (page === 1) {
-                renderPage2(); page = 2;
-            } else if (page === 2) {
-                renderPage3(); page = 3;
-            } else if (page === 3) {
-                renderPage4(); page = 4;
-            }
+            if (page === 1) { renderPage2(); page = 2; }
+            else if (page === 2) { renderPage3(); page = 3; }
+            else if (page === 3) { renderPage4(); page = 4; }
         }
 
         function noClicked() {
@@ -217,10 +207,8 @@
 
             const sticker = document.getElementById("stickerImg");
             const msg = document.getElementById("message");
-
             const index = Math.min(noCount - 1, noStickers.length - 1);
 
-            /* Force GIF reload */
             sticker.src = "";
             setTimeout(() => {
                 sticker.src = noStickers[index] + "?t=" + Date.now();
@@ -228,65 +216,66 @@
 
             msg.innerText = noMessages[index];
 
-            if (noCount >= 4 && !escapeMode) {
+            if (noCount >= 4 && !escapeEnabled) {
                 enableEscape();
             }
         }
 
+        /* RUNAWAY NO BUTTON (FIXED & SAFE) */
         function enableEscape() {
-            escapeMode = true;
+            escapeEnabled = true;
             const noBtn = document.getElementById("noBtn");
+            const box = document.getElementById("btnBox");
+
+            const btnRect = noBtn.getBoundingClientRect();
+            const boxRect = box.getBoundingClientRect();
 
             noBtn.style.position = "absolute";
-            noBtn.addEventListener("mouseenter", runAway);
-            noBtn.addEventListener("touchstart", runAway);
-            noBtn.addEventListener("pointerdown", runAway);
+            noBtn.style.left = (btnRect.left - boxRect.left) + "px";
+            noBtn.style.top = (btnRect.top - boxRect.top) + "px";
+
+            noBtn.addEventListener("mouseenter", moveNo);
+            noBtn.addEventListener("touchstart", moveNo, { passive: true });
         }
 
-        function runAway() {
-            if (!escapeMode) return;
-
+        function moveNo() {
             const box = document.getElementById("btnBox");
             const noBtn = document.getElementById("noBtn");
 
             const maxX = box.clientWidth - noBtn.offsetWidth;
             const maxY = box.clientHeight - noBtn.offsetHeight;
 
-            noBtn.style.left = Math.random() * maxX + "px";
-            noBtn.style.top = Math.random() * maxY + "px";
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
         }
 
         function yesClicked() {
             const now = new Date().toLocaleString();
 
             document.body.innerHTML = `
-        <div style="
-            min-height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            flex-direction:column;
-            background:#ffe4e1;
-            font-family:'Segoe Script', cursive;
-            color:#7a0000;
-            text-align:center;
-            padding:30px;
-        ">
-            <div style="font-size:36px;">
-                My squishy said yes ❤️
-            </div>
-
-            <div style="font-size:20px; margin-top:10px;">
-                Accepted on:<br>${now}
-            </div>
-
-            <img src="final.gif" style="width:180px;margin-top:22px;">
-
-            <div style="font-size:40px; margin-top:18px;">
-                🌸
-            </div>
-        </div>
-    `;
+                <div style="
+                    min-height:100vh;
+                    display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    justify-content:center;
+                    background:#ffe4e1;
+                    font-family:'Segoe Script', cursive;
+                    color:#7a0000;
+                    text-align:center;
+                    padding:30px;
+                ">
+                    <div style="font-size:38px;">She said yes ❤️</div>
+                    <div style="font-size:20px;margin-top:10px;">
+                        Accepted on:<br>${now}
+                    </div>
+                    <img src="final.gif" style="width:180px;margin-top:22px;">
+                    <div style="font-size:42px;margin-top:20px;">🌸</div>
+                </div>
+            `;
         }
     </script>
 
