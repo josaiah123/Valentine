@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Ibaba ❤️ From Josaiah</title>
+    <title>For You ❤️</title>
 
     <style>
         * {
@@ -13,248 +13,278 @@
 
         body {
             margin: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            background: linear-gradient(180deg, #ffe4e1, #ffd6dc);
+            min-height: 100vh;
+            background: #ffe4e1;
             font-family: "Segoe Script", cursive;
-        }
-
-        /* 🌸 FLOATING BACKGROUND ELEMENTS */
-        .floating {
-            position: absolute;
-            font-size: 24px;
-            animation: floatUp linear infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes floatUp {
-            from {
-                transform: translateY(100vh);
-            }
-
-            to {
-                transform: translateY(-120vh);
-            }
-        }
-
-        /* 💌 MAIN CONTAINER */
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            padding: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
         .card {
             background: #fff8f6;
             width: 100%;
-            max-width: 1100px;
-            border-radius: 20px;
-            padding: 50px;
-            display: flex;
-            gap: 50px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1.5s ease;
-        }
-
-        /* 📸 PHOTO */
-        .photo {
-            flex-shrink: 0;
+            max-width: 520px;
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
         }
 
         .photo img {
-            width: 320px;
-            max-width: 80vw;
-            border-radius: 12px;
-            border: 5px solid #eee;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            border: 3px solid #e6e6e6;
+            margin-bottom: 20px;
         }
 
-        /* ✍️ TEXT */
+        .sticker img {
+            width: 160px;
+            margin: 16px auto;
+        }
+
         .text {
-            color: #7a0000;
             font-size: 22px;
-            line-height: 1.7;
+            color: #7a0000;
+        }
+
+        .subtext {
+            font-size: 18px;
+            color: #7a0000;
+            margin-top: 12px;
+            opacity: 0.9;
         }
 
         .question {
-            margin-top: 30px;
-            font-size: 34px;
-            text-align: center;
+            font-size: 28px;
+            color: #7a0000;
+            margin-top: 14px;
         }
 
-        /* 💖 BUTTONS */
+        .message {
+            font-size: 18px;
+            color: #7a0000;
+            margin-top: 10px;
+            min-height: 28px;
+        }
+
         .buttons {
-            margin-top: 40px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 22px;
             position: relative;
-            height: 120px;
         }
 
         button {
             font-family: "Comic Sans MS", cursive;
-            font-size: 24px;
-            padding: 14px 36px;
+            font-size: 22px;
+            padding: 12px 32px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
         }
 
         .yes {
             background: #ff2e93;
             color: white;
-            animation: pulse 1.5s infinite;
         }
 
         .no {
             background: #8b0000;
             color: white;
-            position: absolute;
-            left: 220px;
-            top: 0;
-        }
-
-        /* ✨ ANIMATIONS */
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 📱 MOBILE */
-        @media (max-width: 768px) {
-            .card {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px;
-            }
-
-            .text {
-                font-size: 20px;
-            }
-
-            .question {
-                font-size: 26px;
-            }
-
-            .buttons {
-                margin: 0 auto;
-            }
         }
     </style>
 </head>
 
-<body onclick="startMusic()">
+<body onclick="handleTap()">
 
     <audio id="bgm" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- 🌸 FLOATING DECORATIONS -->
-    <script>
-        const icons = ["❤️", "💗", "🌸", "🌷", "💖", "✨"];
-        for (let i = 0; i < 25; i++) {
-            const el = document.createElement("div");
-            el.className = "floating";
-            el.innerText = icons[Math.floor(Math.random() * icons.length)];
-            el.style.left = Math.random() * 100 + "vw";
-            el.style.animationDuration = (10 + Math.random() * 10) + "s";
-            el.style.fontSize = (18 + Math.random() * 20) + "px";
-            document.body.appendChild(el);
-        }
-    </script>
-
-    <div class="container">
-        <div class="card">
-            <div class="photo">
-                <img src="photo.jpeg" alt="Us">
-            </div>
-
-            <div class="text">
-                <p><b>Dear Ibaba,</b></p>
-
-                <p>
-                    From the very first moment I saw you,<br>
-                    I knew my heart had finally found its home.
-                </p>
-
-                <p>
-                    You mean more to me than words can ever say.
-                </p>
-
-                <div class="question">
-                    Will you be my Valentine? 💖
-                </div>
-
-                <div class="buttons">
-                    <button class="yes" onclick="yesClicked()">YES 💕</button>
-                    <button class="no" onmouseenter="moveNo(this)" ontouchstart="moveNo(this)"
-                        onpointerdown="moveNo(this)">
-                        NO 😢
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="card" id="card"></div>
 
     <script>
+        let page = 1;
         let musicStarted = false;
-        function startMusic() {
+        let noCount = 0;
+        let escapeMode = false;
+
+        /* Stickers ONLY for NO reactions */
+        const noStickers = [
+            "sticker2.gif",
+            "sticker3.gif",
+            "sticker4.gif",
+            "sticker5.gif"
+        ];
+
+        const noMessages = [
+            "Hey… that wasn’t very nice",
+            "Okay, that kinda hurt 💔",
+            "Wow… this is getting personal",
+            "NO option removed for emotional safety."
+        ];
+
+        renderPage1();
+
+        /* ---------- PAGES ---------- */
+
+        function renderPage1() {
+            card.innerHTML = `
+        <div class="photo">
+            <img src="photo.jpg" alt="Us">
+        </div>
+        <div class="text">
+            Boohoo I have something important to tell you…
+        </div>
+        <div class="subtext">(tap anywhere)</div>
+    `;
+        }
+
+        function renderPage2() {
+            card.innerHTML = `
+        <div class="sticker">
+            <img src="sticker1.gif">
+        </div>
+        <div class="text">
+            Before anything else…
+        </div>
+        <div class="subtext">
+            I want you to know that you truly mean a lot to me.
+        </div>
+        <div class="subtext">(tap anywhere)</div>
+    `;
+        }
+
+        function renderPage3() {
+            card.innerHTML = `
+        <div class="sticker">
+            <img src="sticker1.gif">
+        </div>
+        <div class="text">
+            I’m really grateful for you.
+        </div>
+        <div class="subtext">
+            For your patience, your care, and the way you make
+            even ordinary days feel special.
+        </div>
+        <div class="subtext">(tap anywhere)</div>
+    `;
+        }
+
+        /* QUESTION PAGE — RENDERED ONCE ONLY */
+        function renderPage4() {
+            card.innerHTML = `
+        <div class="sticker">
+            <img id="stickerImg" src="sticker1.gif">
+        </div>
+
+        <div class="question" id="questionText">
+            Will you be my Valentine?
+        </div>
+
+        <div class="message" id="message"></div>
+
+        <div class="buttons" id="btnBox">
+            <button class="yes" onclick="yesClicked()">YES</button>
+            <button class="no" id="noBtn" onclick="noClicked()">NO</button>
+        </div>
+    `;
+        }
+
+        /* ---------- INTERACTION ---------- */
+
+        function handleTap() {
             if (!musicStarted) {
                 document.getElementById("bgm").play();
                 musicStarted = true;
             }
+
+            if (page === 1) {
+                renderPage2(); page = 2;
+            } else if (page === 2) {
+                renderPage3(); page = 3;
+            } else if (page === 3) {
+                renderPage4(); page = 4;
+            }
         }
 
-        function moveNo(btn) {
-            const box = document.querySelector(".buttons");
-            const maxX = box.clientWidth - btn.offsetWidth;
-            const maxY = box.clientHeight - btn.offsetHeight;
-            btn.style.left = Math.random() * maxX + "px";
-            btn.style.top = Math.random() * maxY + "px";
+        function noClicked() {
+            noCount++;
+
+            const sticker = document.getElementById("stickerImg");
+            const msg = document.getElementById("message");
+
+            const index = Math.min(noCount - 1, noStickers.length - 1);
+
+            /* Force GIF reload */
+            sticker.src = "";
+            setTimeout(() => {
+                sticker.src = noStickers[index] + "?t=" + Date.now();
+            }, 20);
+
+            msg.innerText = noMessages[index];
+
+            if (noCount >= 4 && !escapeMode) {
+                enableEscape();
+            }
+        }
+
+        function enableEscape() {
+            escapeMode = true;
+            const noBtn = document.getElementById("noBtn");
+
+            noBtn.style.position = "absolute";
+            noBtn.addEventListener("mouseenter", runAway);
+            noBtn.addEventListener("touchstart", runAway);
+            noBtn.addEventListener("pointerdown", runAway);
+        }
+
+        function runAway() {
+            if (!escapeMode) return;
+
+            const box = document.getElementById("btnBox");
+            const noBtn = document.getElementById("noBtn");
+
+            const maxX = box.clientWidth - noBtn.offsetWidth;
+            const maxY = box.clientHeight - noBtn.offsetHeight;
+
+            noBtn.style.left = Math.random() * maxX + "px";
+            noBtn.style.top = Math.random() * maxY + "px";
         }
 
         function yesClicked() {
+            const now = new Date().toLocaleString();
+
             document.body.innerHTML = `
         <div style="
-            height:100vh;
+            min-height:100vh;
             display:flex;
             align-items:center;
             justify-content:center;
             flex-direction:column;
-            background:linear-gradient(180deg,#ffe4e1,#ffd6dc);
+            background:#ffe4e1;
             font-family:'Segoe Script', cursive;
             color:#7a0000;
             text-align:center;
+            padding:30px;
         ">
-            <div style="font-size:48px;">You chose us ❤️</div>
-            <div style="font-size:32px; margin-top:20px;">
-                Happy Valentine’s Day
+            <div style="font-size:36px;">
+                My squishy said yes ❤️
             </div>
-            <div style="font-size:60px; margin-top:30px;">💖💖💖</div>
+
+            <div style="font-size:20px; margin-top:10px;">
+                Accepted on:<br>${now}
+            </div>
+
+            <img src="final.gif" style="width:180px;margin-top:22px;">
+
+            <div style="font-size:40px; margin-top:18px;">
+                🌸
+            </div>
         </div>
     `;
         }
