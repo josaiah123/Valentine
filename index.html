@@ -149,8 +149,8 @@
             background: #ff2e93;
             color: white;
             animation: vibrate 2.2s infinite;
+            /* VERY slow start */
             z-index: 2;
-            /* LOWER than running NO */
         }
 
         .no {
@@ -195,12 +195,8 @@
         }
 
         const noStickers = [
-            "sticker2.gif",
-            "sticker3.gif",
-            "sticker4.gif",
-            "sticker5.gif",
-            "sticker6.gif",
-            "sticker7.gif"
+            "sticker2.gif", "sticker3.gif", "sticker4.gif",
+            "sticker5.gif", "sticker6.gif", "sticker7.gif"
         ];
 
         const noMessages = [
@@ -278,7 +274,10 @@
             noBtn.style.animation = "tremble 0.3s";
             setTimeout(() => noBtn.style.animation = "", 300);
 
+            // 🔥 GUARANTEED SPEED-UP
             yesSpeed = Math.max(0.12, yesSpeed - 0.25);
+            yesBtn.style.animation = "none";      // reset
+            yesBtn.offsetHeight;                  // force reflow
             yesBtn.style.animation = `vibrate ${yesSpeed}s infinite`;
 
             if (noCount === 6 && !escapeEnabled) {
@@ -286,7 +285,7 @@
             }
         }
 
-        /* NO RUNS AWAY — stays on top */
+        /* NO RUNS AWAY */
         function enableEscape() {
             escapeEnabled = true;
             const noBtn = document.getElementById("noBtn");
@@ -296,7 +295,7 @@
             const cr = box.getBoundingClientRect();
 
             noBtn.style.position = "absolute";
-            noBtn.style.zIndex = "5";   // 🔥 FIX
+            noBtn.style.zIndex = "5";
             noBtn.style.left = (br.left - cr.left) + "px";
             noBtn.style.top = (br.top - cr.top) + "px";
 
